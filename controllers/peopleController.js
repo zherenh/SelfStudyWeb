@@ -51,14 +51,14 @@ const getDataById = async(req, res, next) => {
     } 
 } 
 
-// const deleteDataById= async(req, res, next) => { 
-//     try { 
-//         await Author.deleteOne({_id: req.params.author_id})
-//         res.redirect('/people')
-//     } catch (err) { 
-//         return next(err) 
-//     } 
-// } 
+const deleteDataById= async(req, res, next) => { 
+    try { 
+        await Author.deleteOne({_id: req.params.author_id})
+        res.redirect('/people')
+    } catch (err) { 
+        return next(err) 
+    } 
+} 
 
 const insertData = async(req, res, next) => { 
     try { 
