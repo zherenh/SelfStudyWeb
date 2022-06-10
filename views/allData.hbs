@@ -1,0 +1,13 @@
+<h1>Displaying all data</h1>
+
+<ul>
+    {{#each data}}
+    <li><a href="/people/{{this.id}}/">{{this.id}}, {{this.last_name}}</a></li>
+    {{/each}}
+</ul>
+<form action="" method="post">
+    <input name="od" type="number" placeholder="id" required>
+    <input name="firstname" type="text" placeholder="firstname" required>
+    <input name="lastname" type="text" placeholder="lastname" required>
+    <input type="submit">
+</form>
