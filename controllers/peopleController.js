@@ -105,5 +105,5 @@ module.exports = {
     getAllPeopleData,
     getDataById,
     insertData,
-    // deleteDataById
+    deleteDataById
 }
