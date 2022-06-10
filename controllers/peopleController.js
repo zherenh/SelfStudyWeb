@@ -26,7 +26,11 @@ const getDataById = (req, res) => {
 
 // add an object to the database
 const insertData = (req,res) => {
-    // const newPeople = req.body
+    const newPeople = {
+        id: req.body.id,
+        first_name: req.body.firstname,
+        last_name: req.body.lastname
+    }
     // if(JSON.stringify(newPeople) != "{}") {
     //     if(!peopleData.find(data => data.id == newPeople.id)){
             
@@ -36,7 +40,7 @@ const insertData = (req,res) => {
 
 
     // push the incoming JSON object to the array. (Note, we are not validating the data - should fix this later.)
-    peopleData.push(req.body)
+    peopleData.push(newPeople)
     // return the updated database
     res.send(peopleData)
 }
