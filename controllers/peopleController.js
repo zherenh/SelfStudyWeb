@@ -53,7 +53,7 @@ const getDataById = async(req, res, next) => {
 
 const deleteDataById= async(req, res, next) => { 
     try { 
-        await Author.deleteById(req.params.author_id).lean() 
+        await Author.deleteOne({_id: req.params.author_id})
         res.redirect('/people')
     } catch (err) { 
         return next(err) 
