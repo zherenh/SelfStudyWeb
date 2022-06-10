@@ -51,6 +51,15 @@ const getDataById = async(req, res, next) => {
     } 
 } 
 
+const deleteDataById= async(req, res, next) => { 
+    try { 
+        await Author.deleteById(req.params.author_id).lean() 
+        res.redirect('/people')
+    } catch (err) { 
+        return next(err) 
+    } 
+} 
+
 const insertData = async(req, res, next) => { 
     try { 
         const author = new Author({
@@ -95,5 +104,6 @@ const insertData = (req,res) => {
 module.exports = {
     getAllPeopleData,
     getDataById,
-    insertData
+    insertData,
+    deleteDataById
 }

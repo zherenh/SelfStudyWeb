@@ -15,5 +15,7 @@ peopleRouter.get('/:author_id', peopleController.getDataById)
 // add a new JSON object to the database
 peopleRouter.post('/', peopleController.insertData)
 
+peopleRouter.get('/delete/:author_id', peopleController.deleteDataById)
+
 // export the router
 module.exports = peopleRouter
