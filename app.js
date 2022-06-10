@@ -4,6 +4,8 @@ const express = require('express')
 // Set your app up as an express app
 const app = express()
 
+require('./models')
+
 const port = process.env.PORT || 3000
 
 // Set up to handle POST requests
@@ -57,3 +59,4 @@ app.get('/', (req,res) => {
 // app.get('/', (req,res) => {
 //     res.send('Our demo app is working!')
 // })
+
