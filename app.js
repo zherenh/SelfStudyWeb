@@ -8,16 +8,17 @@ const port = process.env.PORT || 3000
 
 // Set up to handle POST requests
 app.use(express.json())     // needed if POST data is in JSON format
-// app.use(express.urlencoded())  // only needed for URL-encoded input
+
+app.use(express.urlencoded({extended: true}))  // only needed for URL-encoded input
 
 // link to our router
 const peopleRouter = require('./routes/peopleRouter')
 
 // middleware to log a message each time a request arrives at the server - handy for debugging
-app.use((req,res,next) => {
-    console.log('message arrived: ' + req.method + ' ' + req.path)
-    next()
-})
+// app.use((req,res,next) => {
+//     console.log('message arrived: ' + req.method + ' ' + req.path)
+//     next()
+// })
 
 // the demo routes are added to the end of the '/demo-management' path
 app.use('/people', peopleRouter)

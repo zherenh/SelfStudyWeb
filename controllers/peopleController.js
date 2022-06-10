@@ -11,7 +11,7 @@ const getAllPeopleData = (req, res) => {
 // handle request to get one data instance
 const getDataById = (req, res) => {
     // search the database by ID
-    const data = peopleData.find(data => data.id === req.params.id)
+    const data = peopleData.find(theData => theData.id === req.params.id)
 
     // return data if this ID exists
     if (data) {
@@ -27,22 +27,28 @@ const getDataById = (req, res) => {
 // add an object to the database
 const insertData = (req,res) => {
     const newPeople = {
-        id: req.body.id,
-        first_name: req.body.firstname,
-        last_name: req.body.lastname
-    }
+        "id": req.body.id,
+        "first_name": req.body.firstname,
+        "last_name": req.body.lastname
+    };
+
+
     // if(JSON.stringify(newPeople) != "{}") {
     //     if(!peopleData.find(data => data.id == newPeople.id)){
             
     //     }
     // peopleData.push(newPeople)
     // }
-
-
+    console.log(req.body);
     // push the incoming JSON object to the array. (Note, we are not validating the data - should fix this later.)
-    peopleData.push(newPeople)
+    peopleData.push({
+        "id": req.body.id,
+        "first_name": req.body.firstname,
+        "last_name": req.body.lastname
+    })
     // return the updated database
-    res.send(peopleData)
+    // res.rede(peopleData)
+    res.redirect('back')
 }
 
 module.exports = {
