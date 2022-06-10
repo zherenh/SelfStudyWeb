@@ -4,6 +4,8 @@ const express = require('express')
 // Set your app up as an express app
 const app = express()
 
+const port = process.env.PORT || 3000
+
 // Set up to handle POST requests
 app.use(express.json())     // needed if POST data is in JSON format
 // app.use(express.urlencoded())  // only needed for URL-encoded input
@@ -22,9 +24,14 @@ app.use('/people', peopleRouter)
 
 
 // Tells the app to listen on port 3000 and logs tha tinformation to the console.
+/* 
 app.listen(3000, () => {
-    console.log('Demo app is listening on port 3000!')
-})
+     console.log('Demo app is listening on port 3000!')
+}) 
+*/
+app.listen(port, () => { 
+    console.log('The library app is running!') 
+}) 
 
 // define where static assets live
 app.use(express.static('public'))
