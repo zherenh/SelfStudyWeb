@@ -4,7 +4,7 @@ const express = require('express')
 // Set your app up as an express app
 const app = express()
 
-require('.')
+require('./models')
 
 const port = process.env.PORT || 3000
 
