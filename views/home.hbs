@@ -2,17 +2,4 @@
 <p>Logged in as {{user.id}}. User secret is {{user.secret}}.</p>
 <form method="POST" action="/logout">
     <button>Logout</button>
-</form>
-And login.hbs is the login page, containing a login form, and an optional flash
-(alert) message:
-<h1>Login</h1>
-{{#each flash}}
-<p class="alert">{{this}}</p>
-{{/each}}
-<form action="login" method="POST">
-    <label for="username">Username:</label>
-    <input type="text" name="username" />
-    <label for="password">Password:</label>
-    <input type="password" name="password" />
-    <input type="submit" value="Submit" />
-</form>
+
