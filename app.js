@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000
 // Set up to handle POST requests
 app.use(express.json())     // needed if POST data is in JSON format
 
-app.use(express.urlencoded({extended: true}))  // only needed for URL-encoded input
+app.use(express.urlencoded({ extended: true }))  // only needed for URL-encoded input
 
 // link to our router
 const peopleRouter = require('./routes/peopleRouter')
@@ -32,9 +32,9 @@ app.listen(3000, () => {
      console.log('Demo app is listening on port 3000!')
 }) 
 */
-app.listen(port, () => { 
-    console.log('The library app is running!') 
-}) 
+app.listen(port, () => {
+    console.log('The library app is running!')
+})
 
 // define where static assets live
 app.use(express.static('public'))
@@ -51,7 +51,7 @@ app.engine('hbs', exphbs.engine({
 app.set('view engine', 'hbs')
 
 /* 同时只能有一个responce.render的返回 */
-app.get('/', (req,res) => {
+app.get('/', (req, res) => {
     res.render('index.hbs')
 })
 
@@ -60,3 +60,43 @@ app.get('/', (req,res) => {
 //     res.send('Our demo app is working!')
 // })
 
+
+
+
+
+
+
+const flash = require('express-flash')
+const session = require('express-session')
+
+// Flash messages for failed logins, and (possibly) other success/error messages
+app.use(flash())
+
+// Track authenticated users through login sessions
+app.use(
+    session({
+        // The secret used to sign session cookies (ADD ENV VAR)
+        secret: process.env.SESSION_SECRET || 'keyboard cat',
+        name: 'demo', // The cookie name (CHANGE THIS)
+        saveUninitialized: false,
+        resave: false,
+        cookie: {
+            sameSite: 'strict',
+            httpOnly: true,
+            secure: app.get('env') === 'production'
+        },
+    })
+)
+
+if (app.get('env') === 'production') {
+    app.set('trust proxy', 1); // Trust first proxy
+}
+
+// Initialise Passport.js
+const passport = require('./passport')
+
+app.use(passport.authenticate('session'))
+
+// Load authentication router
+const authRouter = require('./routes/auth')
+app.use(authRouter)
