@@ -100,3 +100,8 @@ app.use(passport.authenticate('session'))
 // Load authentication router
 const authRouter = require('./routes/auth')
 app.use(authRouter)
+
+
+
+
+// JS single thread
